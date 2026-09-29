@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
 import { getCourse, getCourses } from "@/lib/courses";
 import LikeButton from "@/components/LikeButton";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type CoursePageProps = {
   params: Promise<{ id: string }>;
@@ -21,10 +27,18 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
   return (
     <main className="mx-auto max-w-3xl p-8">
-      <h1 className="text-4xl font-bold mb-4">{course.title}</h1>
-      <p className="text-lg text-gray-700 mb-4">{course.description}</p>
-      <p className="text-gray-600 mb-6">{course.credits} credits</p>
-      <LikeButton initialLikes={course.likes} />
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">{course.title}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <p className="text-lg text-muted-foreground">{course.description}</p>
+          <p className="text-sm font-medium">{course.credits} credits</p>
+          <div>
+            <LikeButton initialLikes={course.likes} />
+          </div>
+        </CardContent>
+      </Card>
     </main>
   );
 }
