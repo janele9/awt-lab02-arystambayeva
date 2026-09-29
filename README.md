@@ -1,65 +1,65 @@
-# Course Catalog
+# course catalog
 
-project for the Advanced Web Technologies course(lab1).
+project for **Advanced Web Technologies** (Lab 1 + Lab 2).
 
-A small course catalog built with Next.js 16 (App Router), TypeScript
-and Tailwind CSS. There is no real backend yet - courses come from a mock
-module in `lib/courses.ts` that fakes a 300 ms delay so the loading state is
-actually visible.
+A small course catalog built with **Next.js 16 (App Router)** + **TypeScript** +
+**Tailwind CSS** + **shadcn/ui**. Data is mocked in `lib/courses.ts` with a fake
+300 ms delay so the loading state is visible.
 
-## Pages
-`/` - home page with a link to the course list
+## pages
 
-`/about` - short info about the project
+- `/` — home
+- `/about` - about the project
+- `/courses` - list of all courses
+- `/courses/[id]` - single course page with a like button
 
-`/courses` - list of all courses
+## lab 1 - routing and data
 
-`/courses/[id]` - single course page with a working 'like' button
+- App Router, file-based routing
+- Server components, `await getCourses()`
+- One client component - `components/LikeButton.tsx` (`'use client'`)
+- Dynamic route `/courses/[id]`, `generateStaticParams`
+- `not-found.tsx`, `loading.tsx`
+- Shared navigation `Home / Courses / About` in `app/layout.tsx`
 
-## What is implemented
-File-based routing with the App Router
+## lab 2 - styling (Tailwind + shadcn/ui)
 
-Server components for pages and data fetching (`await getCourses()` right in the component)
-
-One client component - `components/LikeButton.tsx` - the only file with `'use client'`
-
-Dynamic route `/courses/[id]` with `params` awaited as a Promise
-
-`generateStaticParams` - all course pages are pre-rendered at build time
-
-`app/courses/not-found.tsx` - shown when a course doesn't exist
-
-`app/courses/[id]/loading.tsx` - loading indicator while the course is being fetched
-
-Shared navigation (`Home / Courses / About`) in `app/layout.tsx`
+- Installed shadcn/ui, added `Button` and `Card`
+- `CourseCard.tsx` rewritten with `Card / CardHeader / CardTitle / CardContent / Button`
+  (still a **Server Component**, no `'use client'`)
+- `LikeButton.tsx` uses the shadcn/ui `Button`
+- `/courses` — responsive grid: **1 → 2 (sm) → 3 (lg) → 4 (xl)** columns
+- Card hover effect: `hover:shadow-md hover:border-blue-300 transition`
+- Navigation: `flex`, `gap`, padding, hover state, bottom border
+- Responsiveness verified via DevTools (phone / tablet / desktop)
 
 ## Project structure
-app/
-|-- layout.tsx
-|-- page.tsx
-|-- about/
-|   |--page.tsx
-|-- courses/
-    |-- page.tsx
-    |-- not-found.tsx
-    |-- [id]/
-        |-- page.tsx
-        |-- loading.tsx
-components/
-|-- CourseCard.tsx
-|-- LikeButton.tsx
-lib/
-|-- courses.ts
 
-## How to run
+```
+app/
+├── layout.tsx
+├── page.tsx
+├── globals.css
+├── about/page.tsx
+└── courses/
+    ├── page.tsx
+    ├── not-found.tsx
+    └── [id]/
+        ├── page.tsx
+        └── loading.tsx
+components/
+├── CourseCard.tsx
+├── LikeButton.tsx
+└── ui/            # shadcn/ui
+lib/
+├── courses.ts
+└── utils.ts
+```
+
+## Run
 
 ```bash
 npm install
-npm run dev
-Open http://localhost:3000
-
-## Build
-
-```bash
-npm run build
+npm run dev      
+npm run build   
 ```
