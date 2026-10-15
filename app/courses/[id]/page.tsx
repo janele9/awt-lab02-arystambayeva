@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getCourse } from "@/lib/courses";
 import LikeButton from "@/components/LikeButton";
+import EnrollForm from "@/components/EnrollForm";
 import {
   Card,
   CardContent,
@@ -30,8 +31,9 @@ export default async function CoursePage({ params }: CoursePageProps) {
           <p className="text-lg text-muted-foreground">{course.description}</p>
           <p className="text-sm font-medium">{course.credits} credits</p>
           <div>
-            <LikeButton initialLikes={course.likes} />
+            <LikeButton courseId={course.id} initialLikes={course.likes} />
           </div>
+          <EnrollForm courseId={course.id} />
         </CardContent>
       </Card>
     </main>
