@@ -41,6 +41,12 @@ export default function RootLayout({
               Courses
             </Link>
             <Link
+              href="/filter"
+              className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
+            >
+              Filter
+            </Link>
+            <Link
               href="/about"
               className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
             >
