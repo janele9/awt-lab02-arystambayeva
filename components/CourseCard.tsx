@@ -19,8 +19,7 @@ export default function CourseCard({
 }: CourseCardProps) {
   return (
     <Link href={`/courses/${id}`} className="block">
-      <Card className="hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 transition h-full">
-        <CardHeader>
+      <Card className="hover:shadow-md hover:border-blue-300 transition h-full dark:bg-black-900 dark:border-slate-800 dark:hover:bg-slate-800 dark:hover:border-blue-500 dark:hover:shadow-lg dark:hover:shadow-blue-500/20">        <CardHeader>
           <CardTitle className="text-lg">{title}</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
